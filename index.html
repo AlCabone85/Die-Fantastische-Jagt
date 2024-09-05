@@ -3,41 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sammelspiel</title>
+    <title>Die Fantastische Jagt</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: grey;
             text-align: center;
         }
         #gameArea {
-            width: 1200px; /* doppelt so breit */
-            height: 800px; /* doppelt so hoch */
-            border: 2px solid black;
+            width: 1200px;
+            height: 800px;
+            border: 10px solid red;
+            border-radius: 20px;
+            background-color: lightgrey;
             margin: 0 auto;
             position: relative;
             overflow: hidden;
         }
+        #gameArea::before, #gameArea::after {
+            content: "❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️";
+            position: absolute;
+            top: -130px;
+            left: -20px;
+            font-size: 32px;
+        }
         #player {
-            width: 100px; /* doppelt so breit */
-            height: 100px; /* doppelt so hoch */
+            width: 150px;
+            height: 150px;
             position: absolute;
             left: 0;
             top: 0;
         }
         .point {
-            width: 60px; /* doppelt so breit */
-            height: 60px; /* doppelt so hoch */
+            width: 90px;
+            height: 90px;
             position: absolute;
+        }
+        #gameOver {
+            display: none;
+            font-size: 48px;
+            color: red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
 <body>
-    <h1>Sammelspiel</h1>
+    <h1>Die Fantastische Jagt</h1>
     <p>Punkte: <span id="score">0</span></p>
     <div id="gameArea">
         <img id="player" src="dein-bild.png" alt="Spieler">
+        <div id="gameOver">Game Over</div>
         <!-- Punkte werden hier mit JavaScript hinzugefügt -->
     </div>
+
+    <audio id="backgroundMusic" src="background.mp3" loop></audio>
+    <audio id="pointSound" src="point.mp3"></audio>
 
     <script src="game.js"></script>
 </body>
