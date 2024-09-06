@@ -22,15 +22,15 @@
             overflow: hidden;
         }
         #player {
-            width: 150px;
-            height: 150px;
+            width: 50px;
+            height: 50px;
             position: absolute;
             left: 0;
             top: 0;
         }
         .point {
-            width: 90px;
-            height: 90px;
+            width: 50px;
+            height: 50px;
             position: absolute;
         }
         #gameOver {
@@ -63,6 +63,22 @@
             background-color: darkblue;
             color: white;
         }
+        #restart {
+            width: 100px;
+            height: 60px;
+            background-color: lightgreen;
+            border: 2px solid #000;
+            border-radius: 10px;
+            margin-right: 20px;
+            font-size: 20px;
+            line-height: 60px;
+            text-align: center;
+            user-select: none;
+        }
+        #restart:active {
+            background-color: darkgreen;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -73,8 +89,9 @@
         <div id="gameOver">Game Over</div>
     </div>
 
-    <!-- Virtuelle Pfeiltasten für mobile Steuerung -->
+    <!-- Restart-Button und virtuelle Pfeiltasten -->
     <div class="control-buttons">
+        <div id="restart">Restart</div>
         <div class="arrow-button" id="up">⬆️</div>
     </div>
     <div class="control-buttons">
