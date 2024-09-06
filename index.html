@@ -29,8 +29,8 @@
             top: 0;
         }
         .point {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             position: absolute;
         }
         #gameOver {
@@ -42,10 +42,19 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-        .control-buttons {
+        .control-container {
             display: flex;
             justify-content: center;
+            align-items: center;
             margin-top: 20px;
+        }
+        .control-buttons {
+            display: flex;
+            flex-direction: column;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
         }
         .arrow-button {
             width: 60px;
@@ -69,7 +78,7 @@
             background-color: lightgreen;
             border: 2px solid #000;
             border-radius: 10px;
-            margin-right: 20px;
+            margin: 10px;
             font-size: 20px;
             line-height: 60px;
             text-align: center;
@@ -89,15 +98,19 @@
         <div id="gameOver">Game Over</div>
     </div>
 
-    <!-- Restart-Button und virtuelle Pfeiltasten -->
-    <div class="control-buttons">
+    <!-- Steuerungsbereich -->
+    <div class="control-container">
         <div id="restart">Restart</div>
-        <div class="arrow-button" id="up">⬆️</div>
-    </div>
-    <div class="control-buttons">
-        <div class="arrow-button" id="left">⬅️</div>
-        <div class="arrow-button" id="down">⬇️</div>
-        <div class="arrow-button" id="right">➡️</div>
+        <div class="control-buttons">
+            <div class="row">
+                <div class="arrow-button" id="up">⬆️</div>
+            </div>
+            <div class="row">
+                <div class="arrow-button" id="left">⬅️</div>
+                <div class="arrow-button" id="down">⬇️</div>
+                <div class="arrow-button" id="right">➡️</div>
+            </div>
+        </div>
     </div>
 
     <audio id="backgroundMusic" src="background.mp3" loop></audio>
