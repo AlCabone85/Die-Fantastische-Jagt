@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let score = 0;
     let playerX = 0;
     let playerY = 0;
-    let speed = 10;
+    let speed = 20; // Startgeschwindigkeit
     let direction = "right";
 
     // Hintergrundmusik abspielen
-    backgroundMusic.volume = 1; // Leise abspielen
+    backgroundMusic.volume = 0.2;
     backgroundMusic.play();
 
     // Spielerbewegung basierend auf der Richtung
@@ -49,34 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
         player.style.top = playerY + "px";
     }
 
-    // Bewegung ändern durch Pfeiltasten
-    document.addEventListener("keydown", function (event) {
-        switch (event.key) {
-            case "ArrowUp":
-                if (direction !== "down") direction = "up";
-                break;
-            case "ArrowDown":
-                if (direction !== "up") direction = "down";
-                break;
-            case "ArrowLeft":
-                if (direction !== "right") direction = "left";
-                break;
-            case "ArrowRight":
-                if (direction !== "left") direction = "right";
-                break;
-        }
-    });
-
-    // Punkte generieren
-    function createPoint() {
-        const point = document.createElement("img");
-        point.src = "punkt-bild.png";
-        point.classList.add("point");
-        point.style.left = Math.random() * (gameArea.clientWidth - 90) + "px";
-        point.style.top = Math.random() * (gameArea.clientHeight - 90) + "px";
-        gameArea.appendChild(point);
-    }
-
     // Kollisionserkennung
     function checkCollisions() {
         const points = document.querySelectorAll(".point");
@@ -84,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const pointRect = point.getBoundingClientRect();
             const playerRect = player.getBoundingClientRect();
 
-            // Überprüfung auf Kollision
             if (!(playerRect.right < pointRect.left || 
                   playerRect.left > pointRect.right || 
                   playerRect.bottom < pointRect.top || 
@@ -108,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function gameOver() {
         clearInterval(gameInterval);
         gameOverMessage.style.display = "block";
-        backgroundMusic.pause(); // Stoppe die Hintergrundmusik
+        backgroundMusic.pause();
     }
 
     // Initialer Punkt
@@ -117,6 +88,51 @@ document.addEventListener("DOMContentLoaded", function () {
     // Spieler automatisch bewegen
     const gameInterval = setInterval(movePlayer, 100);
 
-    // Initiale Spielerposition setzen
-    updatePlayerPosition();
+    // Bewegung ändern durch Pfeiltasten
+    document.addEventListener("keydown", function (event) {
+        switch (event.key) {
+            case "ArrowUp":
+                if (direction !== "down") direction = "up";
+                break;
+            case "ArrowDown":
+                if (direction !== "up") direction = "down";
+                break;
+            case "ArrowLeft":
+                if (direction !== "right") direction = "left";
+                break;
+            case "ArrowRight":
+                if (direction !== "left") direction = "right";
+                break;
+        }
+    });
+
+    // Virtuelle Pfeiltasten (Touchscreen)
+    document.getElementById("up").addEventListener("click", function () {
+        if (direction !== "down") direction = "up";
+    });
+    document.getElementById("down").addEventListener("click", function () {
+        if (direction !== "up") direction = "down";
+    });
+    document.getElementById("left").addEventListener("click", function () {
+        if (direction !== "right") direction = "left";
+    });
+    document.getElementById("right").addEventListener("click", function () {
+        if (direction !== "left") direction = "right";
+    });
+
+    // Spielerposition aktualisieren
+    function updatePlayerPosition() {
+        player.style.left = playerX + "px";
+        player.style.top = playerY + "px";
+    }
+
+    // Punkte generieren
+    function createPoint() {
+        const point = document.createElement("img");
+        point.src = "punkt-bild.png";
+        point.classList.add("point");
+        point.style.left = Math.random() * (gameArea.clientWidth - 90) + "px";
+        point.style.top = Math.random() * (gameArea.clientHeight - 90) + "px";
+        gameArea.appendChild(point);
+    }
 });
